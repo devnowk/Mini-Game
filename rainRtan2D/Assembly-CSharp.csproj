@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Animation\Scripts\rtan.cs" />
+    <Compile Include="Assets\Animation\Scripts\rain.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

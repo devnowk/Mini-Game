@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class rtan : MonoBehaviour
 {
-    float direction = 0.01f; // 르탄이 속력
+    float direction = 0.05f; // 르탄이 속력
     int toward = 1; // 르탄이 방향
 
     // Start is called before the first frame update
