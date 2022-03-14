@@ -57,5 +57,10 @@ public class rain : MonoBehaviour
             //Debug.Log("땅이다!");
             Destroy(gameObject, 0.1f); // 부딪힌 객체가 땅이면 객체 삭제
         }
+        if(collision.gameObject.tag == "rtan")
+        {
+            Destroy(gameObject);
+            GameManager.I.addScore(score); // I를 가져와야 싱글톤 객체를 호출한 것
+        }
     }
 }
