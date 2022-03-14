@@ -17,4 +17,10 @@ public class GameManager : MonoBehaviour // 게임 전체를 관장함
     {
 
     }
+
+    void makeRain()
+    {
+        //Debug.Log("비를 내려라!");
+        Instantiate(rain); // rain이 생성될 때, 랜덤 타입으로 생성됨(역할 분리)
+    }
 }
