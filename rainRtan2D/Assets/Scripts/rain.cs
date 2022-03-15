@@ -22,19 +22,19 @@ public class rain : MonoBehaviour
             case 1:
                 size = 1.2f;
                 score = 3;
-                GetComponent<SpriteRenderer>().color = new Color(100 / 255f, 100 / 255f, 255 / 255f, 255 / 255f); // 0~1 사이의 실수(RGBA)
+                GetComponent<SpriteRenderer>().color = new Color(10 / 255f, 10 / 255f, 255 / 255f, 255 / 255f); // 0~1 사이의 실수(RGBA)
                 break;
 
             case 2:
                 size = 1.0f;
                 score = 2;
-                GetComponent<SpriteRenderer>().color = new Color(130 / 255f, 130 / 255f, 255 / 255f, 255 / 255f);
+                GetComponent<SpriteRenderer>().color = new Color(50 / 255f, 50 / 255f, 255 / 255f, 255 / 255f);
                 break;
 
             case 3:
                 size = 0.8f;
                 score = 1;
-                GetComponent<SpriteRenderer>().color = new Color(150 / 255f, 150 / 255f, 255 / 255f, 255 / 255f);
+                GetComponent<SpriteRenderer>().color = new Color(100 / 255f, 100 / 255f, 255 / 255f, 255 / 255f);
                 break;
 
             case 4:
@@ -58,15 +58,15 @@ public class rain : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) // 빗물이 충돌 했을 때 함수 실행, collision에는 부딪힌 객체 들어옴
     {
-        if(collision.gameObject.tag == "ground")
-        {
-            //Debug.Log("땅이다!");
-            Destroy(gameObject, 0.1f); // 부딪힌 객체가 땅이면 객체 삭제
-        }
         if(collision.gameObject.tag == "rtan")
         {
             Destroy(gameObject);
             GameManager.I.addScore(score); // I를 가져와야 싱글톤 객체를 호출한 것
+        }
+        if (collision.gameObject.tag == "ground")
+        {
+            //Debug.Log("땅이다!");
+            Destroy(gameObject, 0.1f); // 부딪힌 객체가 땅이면 객체 삭제
         }
     }
 }
