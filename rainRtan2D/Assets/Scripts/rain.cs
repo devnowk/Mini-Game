@@ -15,7 +15,7 @@ public class rain : MonoBehaviour
         float y = Random.Range(3.0f, 5.0f);
         transform.position = new Vector3(x, y, 0); // 빗물 랜덤한 위치로 초기화 시켜줌
 
-        type = Random.Range(1, 4); // 1~3 중 랜덤 값 들어감
+        type = Random.Range(1, 5); // 1~4 중 랜덤 값 들어감
 
         switch(type)
         {
@@ -36,7 +36,13 @@ public class rain : MonoBehaviour
                 score = 1;
                 GetComponent<SpriteRenderer>().color = new Color(150 / 255f, 150 / 255f, 255 / 255f, 255 / 255f);
                 break;
-            
+
+            case 4:
+                size = 0.8f;
+                score = -5;
+                GetComponent<SpriteRenderer>().color = new Color(255 / 255f, 100 / 255f, 100 / 255f, 255 / 255f);
+                break;
+
             default:
                 break;
         }
