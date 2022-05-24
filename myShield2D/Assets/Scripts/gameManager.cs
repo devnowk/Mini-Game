@@ -11,6 +11,7 @@ public class gameManager : MonoBehaviour
     public Text timeTxt;
     public Text thisScoreTxt;
     public Text maxScroeTxt;
+    public Animator anim;
     float alive = 0f; // 살아있는 시간
     bool isRunning = true;
 
@@ -45,7 +46,8 @@ public class gameManager : MonoBehaviour
     public void gameOver() // 외부에서 갖다 쓸 수 있음
     {
         isRunning = false; // false되는 순간 alive 값은 변하지 않게 됨
-        Time.timeScale = 0f;
+        anim.SetBool("isDie", true); // 풍선 터지는 애니메이션 실행
+        Invoke("timeStop", 0.5f); // timeStop 함수를 0.5초 후에 실행
         endPanel.SetActive(true);
         thisScoreTxt.text = alive.ToString("N2"); // alive에서 옮기는 동안 시간이 달라지므로 업데이트를 중지시켜야 함
 
@@ -62,5 +64,10 @@ public class gameManager : MonoBehaviour
     public void retry()
     {
         SceneManager.LoadScene("MainScene"); // reload 후, start함수 실행
+    }
+
+    void timeStop()
+    {
+        Time.timeScale = 0f;
     }
 }

@@ -1556,6 +1556,7 @@ MonoBehaviour:
   endPanel: {fileID: 451901637}
   timeTxt: {fileID: 1085544261}
   thisScoreTxt: {fileID: 604603957}
+  maxScroeTxt: {fileID: 2080810849}
 --- !u!4 &1584013776
 Transform:
   m_ObjectHideFlags: 0
