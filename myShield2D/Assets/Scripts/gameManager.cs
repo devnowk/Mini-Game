@@ -10,7 +10,9 @@ public class gameManager : MonoBehaviour
     public GameObject endPanel;
     public Text timeTxt;
     public Text thisScoreTxt;
-    public Text maxScroeTxt;
+    public Text maxScoreTxt;
+    public Text maxScoreTxt1;
+    public Text maxScoreTxt2;
     public Animator anim;
     float alive = 0f; // 살아있는 시간
     bool isRunning = true;
@@ -50,15 +52,6 @@ public class gameManager : MonoBehaviour
         Invoke("timeStop", 0.5f); // timeStop 함수를 0.5초 후에 실행
         endPanel.SetActive(true);
         thisScoreTxt.text = alive.ToString("N2"); // alive에서 옮기는 동안 시간이 달라지므로 업데이트를 중지시켜야 함
-
-        // Playerprefs : 앱을 껐다 켜도 데이터가 유지되게 함 - 유니티에서 데이터를 보관하는 방법
-        if (PlayerPrefs.HasKey("bestscore") == false) // bestscore키가 존재하면 true 아니면 false
-            PlayerPrefs.SetFloat("bestscore", alive);
-        else if (alive > PlayerPrefs.GetFloat("bestscore")) // alive가 기존 값보다 더 크면 갱신
-            PlayerPrefs.SetFloat("bestscore", alive);
-
-        float maxScore = PlayerPrefs.GetFloat("bestscore");
-        maxScroeTxt.text = maxScore.ToString("N2");
     }
 
     public void retry()
@@ -69,5 +62,38 @@ public class gameManager : MonoBehaviour
     void timeStop()
     {
         Time.timeScale = 0f;
+
+        // 시간이 멈춘 후 점수판 실행
+        // Playerprefs : 앱을 껐다 켜도 데이터가 유지되게 함 - 유니티에서 데이터를 보관하는 방법
+        if (!PlayerPrefs.HasKey("bestscore")) PlayerPrefs.SetFloat("bestscore", 0f); // 값이 없으면 0으로 셋팅
+        if (!PlayerPrefs.HasKey("bestscore1")) PlayerPrefs.SetFloat("bestscore1", 0f);
+        if (!PlayerPrefs.HasKey("bestscore2")) PlayerPrefs.SetFloat("bestscore2", 0f);
+
+        float rankOne = PlayerPrefs.GetFloat("bestscore");
+        float rankTwo = PlayerPrefs.GetFloat("bestscore1");
+        float rankThree = PlayerPrefs.GetFloat("bestscore2");
+
+        if (alive > rankOne) // 1등보다 점수가 높으면 1,2,3등 모두 갱신
+        {
+            PlayerPrefs.SetFloat("bestscore", alive);
+            PlayerPrefs.SetFloat("bestscore1", rankOne);
+            PlayerPrefs.SetFloat("bestscore2", rankTwo);
+        }
+        else if (alive > rankTwo) // 2등보다 점수가 높으면 2,3등 갱신
+        {
+            PlayerPrefs.SetFloat("bestscore1", alive);
+            PlayerPrefs.SetFloat("bestscore2", rankTwo);
+        }
+        else if (alive > rankThree) // 3등보다 점수가 높으면 3등만 갱신
+        {
+            PlayerPrefs.SetFloat("bestscore2", alive);
+        }
+
+        float one = PlayerPrefs.GetFloat("bestscore");
+        float two = PlayerPrefs.GetFloat("bestscore1");
+        float three = PlayerPrefs.GetFloat("bestscore2");
+        maxScoreTxt.text = one.ToString("N2");
+        maxScoreTxt1.text = two.ToString("N2");
+        maxScoreTxt2.text = three.ToString("N2");
     }
 }
