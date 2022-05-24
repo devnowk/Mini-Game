@@ -1997,7 +1997,7 @@ MonoBehaviour:
   endPanel: {fileID: 451901637}
   timeTxt: {fileID: 1085544261}
   thisScoreTxt: {fileID: 604603957}
-  maxScroeTxt: {fileID: 2080810849}
+  maxScoreTxt: {fileID: 2080810849}
   maxScoreTxt1: {fileID: 1732512348}
   maxScoreTxt2: {fileID: 88971085}
   anim: {fileID: 953087497}
