@@ -10,6 +10,7 @@ public class gameManager : MonoBehaviour
     public GameObject endPanel;
     public Text timeTxt;
     public Text thisScoreTxt;
+    public Text maxScroeTxt;
     float alive = 0f; // 살아있는 시간
     bool isRunning = true;
 
@@ -47,6 +48,15 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0f;
         endPanel.SetActive(true);
         thisScoreTxt.text = alive.ToString("N2"); // alive에서 옮기는 동안 시간이 달라지므로 업데이트를 중지시켜야 함
+
+        // Playerprefs : 앱을 껐다 켜도 데이터가 유지되게 함 - 유니티에서 데이터를 보관하는 방법
+        if (PlayerPrefs.HasKey("bestscore") == false) // bestscore키가 존재하면 true 아니면 false
+            PlayerPrefs.SetFloat("bestscore", alive);
+        else if (alive > PlayerPrefs.GetFloat("bestscore")) // alive가 기존 값보다 더 크면 갱신
+            PlayerPrefs.SetFloat("bestscore", alive);
+
+        float maxScore = PlayerPrefs.GetFloat("bestscore");
+        maxScroeTxt.text = maxScore.ToString("N2");
     }
 
     public void retry()
