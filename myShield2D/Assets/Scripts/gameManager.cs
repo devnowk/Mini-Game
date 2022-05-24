@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
     public GameObject square;
+    public Text timeTxt;
+    float alive = 0f; // 살아있는 시간
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +17,8 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        alive += Time.deltaTime;
+        timeTxt.text = alive.ToString("N2"); // 문자(소수둘째까지)로 변환 후 반환
     }
 
     void makeSquare()
