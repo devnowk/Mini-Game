@@ -140,3 +140,4 @@ Received Import Request.
   path: Assets/Animation/rtan.controller
   artifactKey: Guid(f6b22d53257b7284d97fc93dc656d2a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Animation/rtan.controller using Guid(f6b22d53257b7284d97fc93dc656d2a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2d4feaf469e9753627212af8914ffaf') in 0.009070 seconds 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
