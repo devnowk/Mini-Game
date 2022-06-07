@@ -17,6 +17,7 @@ public class food : MonoBehaviour
         if(transform.position.y > 26.0f)
         {
             Destroy(gameObject);
+
         }
     }
 }
