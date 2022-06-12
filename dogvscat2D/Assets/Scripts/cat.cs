@@ -9,7 +9,7 @@ public class cat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // 랜덤한 위치에 생성
+        // 랜덤한 위치에 생성(gameManager에서는 위치 지정해줄 필요 없음)
         float x = Random.Range(-8.5f, 8.5f);
         float y = 30f;
         transform.position = new Vector3(x, y, 0f);
@@ -21,6 +21,12 @@ public class cat : MonoBehaviour
         if(energy < full)
         {
             transform.position += new Vector3(0, -0.01f, 0); // cat 밑으로 계속 내려감
+
+            if (transform.position.y < -16.0f)
+            {
+                // 게임 오버
+                gameManager.I.gameOver();
+            }
         }
         else // 에너지가 꽉 찼으면 화면 밖으로 옮김
         {
