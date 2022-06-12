@@ -7,12 +7,18 @@ public class cat : MonoBehaviour
     float full = 5f; // 고양이 배부름
     float energy = 0f; // 현재 에너지
     bool isFull = false;
+    public int type; // 고양이가 normal인지 fat인지 구분(0은 normal, 1은 fat)
     // Start is called before the first frame update
     void Start()
     {
         // 랜덤한 위치에 생성(gameManager에서는 위치 지정해줄 필요 없음)
         float x = Random.Range(-8.5f, 8.5f);
         float y = 30f;
+
+        if(type == 1)
+        {
+            full = 10f;
+        }
         transform.position = new Vector3(x, y, 0f);
     }
 
@@ -21,7 +27,15 @@ public class cat : MonoBehaviour
     {
         if(energy < full)
         {
-            transform.position += new Vector3(0, -0.01f, 0); // cat 밑으로 계속 내려감
+            if(type == 0)
+            {
+                transform.position += new Vector3(0, -0.01f, 0); // cat 밑으로 계속 내려감
+            }
+            else if (type == 1)
+            {
+                transform.position += new Vector3(0, -0.005f, 0);
+            }
+            
 
             if (transform.position.y < -16.0f)
             {

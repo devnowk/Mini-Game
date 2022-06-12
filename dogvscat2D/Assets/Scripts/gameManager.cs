@@ -8,6 +8,7 @@ public class gameManager : MonoBehaviour
     public GameObject dog;
     public GameObject food;
     public GameObject normalCat;
+    public GameObject fatCat;
     public GameObject retryBtn;
     public GameObject levelFront;
     public Text levelText;
@@ -24,7 +25,7 @@ public class gameManager : MonoBehaviour
     void Start()
     {
         InvokeRepeating("makeFood", 0.0f, 0.2f); // 0.2초마다 함수 호출
-        InvokeRepeating("makeCat", 0.0f, 1f);
+        InvokeRepeating("makeCat", 0.0f, 2f);
     }
 
     // Update is called once per frame
@@ -42,7 +43,23 @@ public class gameManager : MonoBehaviour
 
     void makeCat()
     {
-        Instantiate(normalCat);
+        Instantiate(normalCat); // 한 마리는 무조건 만듦
+        if (level<2)
+        {
+            float p = Random.Range(0, 10);
+            if(p<2) Instantiate(normalCat); // 레벨 2일 때는 20프로 확률로 한 마리 더 만듦
+        }
+        else if(level==2)
+        {
+            float p = Random.Range(0, 10);
+            if (p < 5) Instantiate(normalCat); // 레벨 2 이상일 때는 50프로 확률로 한번 더 만듦
+        }
+        else
+        {
+            float p = Random.Range(0, 10);
+            if (p < 6) Instantiate(normalCat);
+            Instantiate(fatCat);
+        }
     }
 
     public void gameOver()
