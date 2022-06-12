@@ -6,6 +6,7 @@ public class cat : MonoBehaviour
 {
     float full = 5f; // 고양이 배부름
     float energy = 0f; // 현재 에너지
+    bool isFull = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,8 +57,13 @@ public class cat : MonoBehaviour
             else
             {
                 //Debug.Log("배부르다!");
-                gameObject.transform.Find("hungry").gameObject.SetActive(false);
-                gameObject.transform.Find("full").gameObject.SetActive(true);
+                if(isFull == false) // 한 번만 호출되도록 함
+                {
+                    gameManager.I.addCat(); // 배가 부른 상태일 때 딱 한 번만 호출돼야 하는 함수
+                    gameObject.transform.Find("hungry").gameObject.SetActive(false);
+                    gameObject.transform.Find("full").gameObject.SetActive(true);
+                    isFull = true;
+                }
             }
         }
     }

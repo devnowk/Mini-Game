@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
@@ -8,8 +9,12 @@ public class gameManager : MonoBehaviour
     public GameObject food;
     public GameObject normalCat;
     public GameObject retryBtn;
-
+    public GameObject levelFront;
+    public Text levelText;
     public static gameManager I;
+
+    int level = 0;
+    int cat = 0; // 몇 마리를 배부르게 했는지
 
     private void Awake()
     {
@@ -44,5 +49,14 @@ public class gameManager : MonoBehaviour
     {
         retryBtn.SetActive(true);
         Time.timeScale = 0f;
+    }
+
+    public void addCat() // 고양이를 배부르게 하면 호출
+    {
+        cat += 1;
+        level = cat / 5; // 다섯마리 잡으면 레벨 올려줌
+
+        levelText.text = level.ToString();
+        levelFront.transform.localScale = new Vector3((cat - level * 5) / 5.0f, 1f, 1f); // 0.2 0.4 0.6 0.8 1.0
     }
 }
