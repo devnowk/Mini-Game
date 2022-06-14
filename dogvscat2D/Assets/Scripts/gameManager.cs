@@ -24,7 +24,8 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("makeFood", 0.0f, 0.2f); // 0.2초마다 함수 호출
+        Time.timeScale = 1f;
+        InvokeRepeating("makeFood", 0.0f, 0.1f); // 0.2초마다 함수 호출
         InvokeRepeating("makeCat", 0.0f, 2f);
     }
 
