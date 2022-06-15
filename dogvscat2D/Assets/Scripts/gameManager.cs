@@ -9,6 +9,7 @@ public class gameManager : MonoBehaviour
     public GameObject food;
     public GameObject normalCat;
     public GameObject fatCat;
+    public GameObject pirateCat;
     public GameObject retryBtn;
     public GameObject levelFront;
     public Text levelText;
@@ -39,27 +40,41 @@ public class gameManager : MonoBehaviour
     {
         float x = dog.transform.position.x;
         float y = dog.transform.position.y + 2.0f;
-        Instantiate(food, new Vector3(x, y, 0), Quaternion.identity); // dog위치에 인스턴스 생성 (Quaternion은 회전을 표현하는 데이터 타입)
+        if (level<5)
+        {
+            Instantiate(food, new Vector3(x, y, 0), Quaternion.identity); // dog위치에 인스턴스 생성 (Quaternion은 회전을 표현하는 데이터 타입)
+        }
+        else
+        {
+            Instantiate(food, new Vector3(x - 1f, y, 0), Quaternion.identity);
+            Instantiate(food, new Vector3(x + 1f, y, 0), Quaternion.identity);
+        }
     }
 
     void makeCat()
     {
         Instantiate(normalCat); // 한 마리는 무조건 만듦
-        if (level<2)
+        if (level>0)
         {
             float p = Random.Range(0, 10);
-            if(p<2) Instantiate(normalCat); // 레벨 2일 때는 20프로 확률로 한 마리 더 만듦
+            if(p<2) Instantiate(normalCat); // 레벨 1 이상일 때는 20프로 확률로 한 마리 더 만듦
         }
-        else if(level==2)
+        if (level>1)
         {
             float p = Random.Range(0, 10);
             if (p < 5) Instantiate(normalCat); // 레벨 2 이상일 때는 50프로 확률로 한번 더 만듦
         }
-        else
+        if(level>2)
         {
             float p = Random.Range(0, 10);
             if (p < 6) Instantiate(normalCat);
-            Instantiate(fatCat);
+            Instantiate(fatCat); // 레벨 3 이상일 때는 뚱냥이 만듦
+        }
+        if(level>4)
+        {
+            float p = Random.Range(0, 10);
+            if (p < 2) Instantiate(fatCat);
+            Instantiate(pirateCat); // 레벨 5 이상일 때 해적 고양이 만듦
         }
     }
 

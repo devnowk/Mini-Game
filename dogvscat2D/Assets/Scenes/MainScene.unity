@@ -777,6 +777,7 @@ MonoBehaviour:
   food: {fileID: 4233608359911666443, guid: 6ddaa25b98313e141bb764881678c737, type: 3}
   normalCat: {fileID: 7135336475579254628, guid: 79f0ec9bd05d6d64fbe5f562a7609def, type: 3}
   fatCat: {fileID: 5228791590235191589, guid: 966739d556371b544ab63e418a007bcd, type: 3}
+  pirateCat: {fileID: 4191135363074545630, guid: bf101456dba87f84abd6619c6fe5c943, type: 3}
   retryBtn: {fileID: 784684222}
   levelFront: {fileID: 560699187}
   levelText: {fileID: 1445026391}
@@ -829,7 +830,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: 100}
+  m_SizeDelta: {x: 40, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1445026391
 MonoBehaviour:
@@ -853,10 +854,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 35
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 4
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0

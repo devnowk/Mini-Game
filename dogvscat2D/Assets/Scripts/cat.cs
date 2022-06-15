@@ -27,13 +27,17 @@ public class cat : MonoBehaviour
     {
         if(energy < full)
         {
-            if(type == 0)
+            if(type == 0) // normalCat
             {
                 transform.position += new Vector3(0, -0.01f, 0); // cat 밑으로 계속 내려감
             }
-            else if (type == 1)
+            else if (type == 1) // fatCat
             {
                 transform.position += new Vector3(0, -0.005f, 0);
+            }
+            else // pirateCat
+            {
+                transform.position += new Vector3(0, -0.03f, 0);
             }
             
 
