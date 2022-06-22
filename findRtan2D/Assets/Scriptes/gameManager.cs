@@ -16,7 +16,6 @@ public class gameManager : MonoBehaviour
         int[] rtans = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
         // OrderBy() 정렬해주는 메소드, rtans 요소들을 랜덤 위치로 섞어줌
         rtans = rtans.OrderBy(item => Random.Range(-1.0f, 1.0f)).ToArray();
-        Debug.Log(Random.Range(-1.0f, 1.0f));
 
         for (int i=0; i<16; i++)
         {
