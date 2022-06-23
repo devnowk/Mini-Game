@@ -6,9 +6,17 @@ using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
+    public static gameManager I; // 싱글톤 화
     public Text timeTxt;
-    public GameObject card;
+    public GameObject card; // 카드 프리팹
+    public GameObject firstCard; // 첫 번째 선택한 카드
+    public GameObject secondCard; // 두 번째 선택한 카드
     float time;
+
+    private void Awake()
+    {
+        I = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -40,5 +48,28 @@ public class gameManager : MonoBehaviour
     {
         time += Time.deltaTime;
         timeTxt.text = time.ToString("N2"); // 소수 둘째자리까지
+    }
+
+    public void isMatched()
+    {
+        // firstCard와 secondCard가 같은지 판단
+        string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
+        string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
+
+        if(firstCardImage == secondCardImage)
+        {
+            // 선택한 두 카드가 같으면 두 카드 없앰
+            firstCard.GetComponent<card>().destroyCard(); // card.cs에 있는 함수 호출
+            secondCard.GetComponent<card>().destroyCard();
+        }
+        else
+        {
+            // 선택한 두 카드가 다르면 다시 뒤집음
+            firstCard.GetComponent<card>().closeCard();
+            secondCard.GetComponent<card>().closeCard();
+        }
+
+        firstCard = null;
+        secondCard = null;
     }
 }
