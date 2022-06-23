@@ -8,10 +8,12 @@ public class gameManager : MonoBehaviour
 {
     public static gameManager I; // 싱글톤 화
     public Text timeTxt;
+    public GameObject endTxt;
     public GameObject card; // 카드 프리팹
     public GameObject firstCard; // 첫 번째 선택한 카드
     public GameObject secondCard; // 두 번째 선택한 카드
     float time;
+    int cardsLeft = 16; // 카드 남은 개수
 
     private void Awake()
     {
@@ -21,6 +23,8 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1.0f;
+
         int[] rtans = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
         // OrderBy() 정렬해주는 메소드, rtans 요소들을 랜덤 위치로 섞어줌
         rtans = rtans.OrderBy(item => Random.Range(-1.0f, 1.0f)).ToArray();
@@ -61,6 +65,14 @@ public class gameManager : MonoBehaviour
             // 선택한 두 카드가 같으면 두 카드 없앰
             firstCard.GetComponent<card>().destroyCard(); // card.cs에 있는 함수 호출
             secondCard.GetComponent<card>().destroyCard();
+
+            //int cardsLeft = GameObject.Find("cards").transform.childCount; // 늦게 세어지는 문제 있음
+            cardsLeft -= 2;
+
+            if(cardsLeft == 0)
+            {
+                Invoke("GameEnd", 0.5f); // 타임스케일 0은 카드가 없어진 뒤 실행
+            }
         }
         else
         {
@@ -71,5 +83,11 @@ public class gameManager : MonoBehaviour
 
         firstCard = null;
         secondCard = null;
+    }
+
+    void GameEnd()
+    {
+        Time.timeScale = 0f;
+        endTxt.SetActive(true); // 게임 오브젝트 형식이어야 SetActive 제어 가능
     }
 }
