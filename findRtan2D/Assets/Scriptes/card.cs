@@ -37,6 +37,7 @@ public class card : MonoBehaviour
 
     public void destroyCard() // 매칭된 카드가 같으면 호출
     {
+        anim.SetBool("isDestroy", true); // card_destroy 애니메이션 실행
         Invoke("destroyCardInvoke", 0.5f); // 1초 후에 함수 호출
     }
 

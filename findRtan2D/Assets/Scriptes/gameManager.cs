@@ -52,6 +52,11 @@ public class gameManager : MonoBehaviour
     {
         time += Time.deltaTime;
         timeTxt.text = time.ToString("N2"); // 소수 둘째자리까지
+
+        if(time >= 30f) // 30초 넘으면 바로 게임 종료
+        {
+            GameEnd();
+        }
     }
 
     public void isMatched()
