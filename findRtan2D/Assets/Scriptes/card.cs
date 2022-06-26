@@ -21,13 +21,18 @@ public class card : MonoBehaviour
     public void openCard() // 카드 클릭 시 이미지 보이게 함
     {
         anim.SetBool("isOpen", true); // card_flip 애니메이션 실행
+        Invoke("openCardInvoke", 0.2f); // 카드 뒷면이 뒤집힐 시간은 줌
+    }
+
+    void openCardInvoke()
+    {
         transform.Find("front").gameObject.SetActive(true); // 카드 앞면 보임
         transform.Find("back").gameObject.SetActive(false); // 카드 뒷면 가림
 
-        if(gameManager.I.firstCard == null) // 첫 번째 카드 없으면 현재 오브젝트 넣음
+        if (gameManager.I.firstCard == null) // 첫 번째 카드 없으면 현재 오브젝트 넣음
         {
             gameManager.I.firstCard = gameObject;
-        } 
+        }
         else // 첫 번째 카드가 이미 존재하면 두 번째 카드에 현재 오브젝트 넣고 매칭요청
         {
             gameManager.I.secondCard = gameObject;
