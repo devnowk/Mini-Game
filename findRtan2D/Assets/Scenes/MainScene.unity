@@ -497,6 +497,7 @@ GameObject:
   - component: {fileID: 1452231583}
   - component: {fileID: 1452231585}
   - component: {fileID: 1452231584}
+  - component: {fileID: 1452231586}
   m_Layer: 5
   m_Name: timeTxt
   m_TagString: Untagged
@@ -556,7 +557,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0.00
+  m_Text: 30.00
 --- !u!222 &1452231585
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -565,6 +566,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1452231582}
   m_CullTransparentMesh: 1
+--- !u!95 &1452231586
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452231582}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9e4ba1fdbab666344bba55f306f7f55e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1732407633
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,6 +619,7 @@ MonoBehaviour:
   card: {fileID: 241732562507869404, guid: 013c44ecfb95fa143899b98073be0fcc, type: 3}
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}
+  timeTxtAnim: {fileID: 1452231586}
 --- !u!4 &1732407635
 Transform:
   m_ObjectHideFlags: 0

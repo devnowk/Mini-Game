@@ -12,6 +12,7 @@ public class gameManager : MonoBehaviour
     public GameObject card; // 카드 프리팹
     public GameObject firstCard; // 첫 번째 선택한 카드
     public GameObject secondCard; // 두 번째 선택한 카드
+    public Animator timeTxtAnim;
     float time;
     int cardsLeft = 16; // 카드 남은 개수
 
@@ -24,6 +25,7 @@ public class gameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1.0f;
+        time = 30.0f;
 
         int[] rtans = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
         // OrderBy() 정렬해주는 메소드, rtans 요소들을 랜덤 위치로 섞어줌
@@ -50,10 +52,15 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
+        time -= Time.deltaTime;
         timeTxt.text = time.ToString("N2"); // 소수 둘째자리까지
 
-        if(time >= 30f) // 30초 넘으면 바로 게임 종료
+        if(time < 6f)
+        {
+            timeTxtAnim.SetBool("isImminent", true); // 5초 이하부터 타임 애니메이션 실행
+        }
+
+        if(time <= 0f) // 30초 넘으면 바로 게임 종료
         {
             GameEnd();
         }
