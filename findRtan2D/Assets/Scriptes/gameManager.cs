@@ -13,6 +13,8 @@ public class gameManager : MonoBehaviour
     public GameObject firstCard; // 첫 번째 선택한 카드
     public GameObject secondCard; // 두 번째 선택한 카드
     public Animator timeTxtAnim;
+    public AudioClip match;
+    public AudioSource audioSource;
     float time;
     int cardsLeft = 16; // 카드 남은 개수
 
@@ -75,6 +77,8 @@ public class gameManager : MonoBehaviour
         if(firstCardImage == secondCardImage)
         {
             // 선택한 두 카드가 같으면 두 카드 없앰
+            audioSource.PlayOneShot(match);
+
             firstCard.GetComponent<card>().destroyCard(); // card.cs에 있는 함수 호출
             secondCard.GetComponent<card>().destroyCard();
 

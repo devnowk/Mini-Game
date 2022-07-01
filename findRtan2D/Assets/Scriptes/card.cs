@@ -5,6 +5,8 @@ using UnityEngine;
 public class card : MonoBehaviour
 {
     public Animator anim;
+    public AudioClip flip; // 실행할 오디오 파일
+    public AudioSource audioSource; // 오디오를 실행할 객체(카드 프리팹 자체)
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,8 @@ public class card : MonoBehaviour
 
     public void openCard() // 카드 클릭 시 이미지 보이게 함
     {
+        audioSource.PlayOneShot(flip);
+
         anim.SetBool("isOpen", true); // card_flip 애니메이션 실행
         Invoke("openCardInvoke", 0.2f); // 카드 뒷면이 뒤집힐 시간은 줌
     }
